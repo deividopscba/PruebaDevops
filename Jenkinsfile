@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh 'docker push deividopscba/pruebacicdpython:latest'
             }
-
+        }
         stage('Test') {
             steps {
                 sh 'docker run --rm pruebacicdpython python manage.py test'
@@ -48,5 +48,4 @@ pipeline {
             cleanWs()
         }
     }
-}
 }
