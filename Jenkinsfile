@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build("pruebacicdpython")
+                    dockerImage = docker.build("deividopscba/pruebacicdpython")
                 }
             }
         }
