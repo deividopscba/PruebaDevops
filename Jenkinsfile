@@ -11,14 +11,14 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build("PruebaCICDPython")
+                    dockerImage = docker.build("pruebacicdpython")
                 }
             }
         }
 
         stage('Test') {
             steps {
-                sh 'docker run --rm PruebaCICDPython python manage.py test'
+                sh 'docker run --rm pruebacicdpython python manage.py test'
             }
         }
 
