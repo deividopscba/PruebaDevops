@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('DockerCred') // Credenciales docker hub
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,11 +13,20 @@ pipeline {
 
         stage('Build') {
             steps {
-                script {
-                    dockerImage = docker.build("deividopscba/pruebacicdpython")
-                }
+                sh 'docker build -t deividopscba/pruebacicdpython .'
             }
         }
+
+        stage('Login to Docker Hub') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                sh 'docker push deividopscba/pruebacicdpython:latest'
+            }
 
         stage('Test') {
             steps {
