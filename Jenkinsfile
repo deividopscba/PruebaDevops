@@ -33,7 +33,16 @@ pipeline {
                 sh 'docker run --rm pruebacicdpython python manage.py test'
             }
         }
+        stage('Deploy') {
+            steps {
+                script {
+                    // Ejecutar el contenedor en la máquina anfitriona
+                    sh "docker run -d --name pruebacicd_container -p 8000:8000 deividopscba/pruebacicdpython:latest"
+                }
+            }
+        }    
     }
+
 
     post {
         always {
