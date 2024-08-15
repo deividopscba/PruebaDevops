@@ -1,4 +1,4 @@
-# Usar una imagen base oficial de Python
+# Usar una imagen base oficial de Python Prueba
 FROM python:3.10-slim
 
 # Configurar el directorio de trabajo
