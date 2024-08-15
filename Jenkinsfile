@@ -33,14 +33,6 @@ pipeline {
                 sh 'docker run --rm pruebacicdpython python manage.py test'
             }
         }
-
-        stage('Deploy') {
-            steps {
-                script {
-                    dockerImage.push('latest')
-                }
-            }
-        }
     }
 
     post {
